@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Guest Book</h1>
+    <ul>
+        {% for m in messages %} <!--진자 템플릿 반복-->
+            <li>{{ m.who }} - {{ m.message }}</li> <!--진자에서는 딕셔너리를 밸류값을 가져올때 키값바로-->
+        {% endfor %} <!-- 진자에서는 닫아줘야한다-->
+    </ul>
+</body>
+</html>
