@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Survey App</h1>
+    <h2>title : {{ question.title }}</h2>
+    <a href="{% url 'surveys:list' %}">List</a>
+    <a href="{% url 'surveys:edit' question.pk %}">edit</a>
+    <a href="{% url 'surveys:delete' question.pk %}">Delete</a>
+    
+    
+     <hr>
+    
+    <form action='{% url "surveys:choice_create" question.pk %}' method='post'>
+        {% csrf_token %}
+        content(내용) : <input type="text" name="content"/>
+        votes(투표수) : <input type="numbet" name="votes"/>
+        <input type="submit" value="Submit"/>
+    </form>
+    
+    <ul>
+        {% for choice in question.choice_set.all %}
+            <li>{{ choice.content }} : {{ choice.votes }}표<a href="{% url 'surveys:choice_delete' question.pk choice.pk %}">Delete</a> </li>
+        {% endfor %}
+    </ul>
+    
+</body>
+</html>
